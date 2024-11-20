@@ -1,38 +1,99 @@
+/* src/App.css */
 .App {
+  font-family: Arial, sans-serif;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 20px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-navbar h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+button {
+  background-color: #61dafb;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+
+button:hover {
+  background-color: #4fa3f7;
+}
+
+.cart-button {
+  background-color: #ff8c00;
+  font-size: 1.2rem;
+}
+
+.App-main {
+  padding: 20px;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  width: 220px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.add-to-cart-button {
+  margin-top: 10px;
+  background-color: #28a745;
+}
+
+.add-to-cart-button:hover {
+  background-color: #218838;
+}
+
+.cart {
+  margin-top: 20px;
+}
+
+.cart ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cart li {
+  margin: 10px 0;
+}
+
+.remove-button {
+  background-color: #dc3545;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+}
+
+.remove-button:hover {
+  background-color: #c82333;
 }
