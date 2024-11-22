@@ -98,3 +98,18 @@ button:hover {
 .remove-button:hover {
   background-color: #c82333;
 }
+
+.order-history-button {
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-right: 20px;
+  display: inline-block;
+}
+
+.order-history-button:hover {
+  background-color: #0056b3;
+}
