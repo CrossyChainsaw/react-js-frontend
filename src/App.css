@@ -12,13 +12,14 @@
 
 .App-navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Space out heading and buttons */
   align-items: center;
 }
 
 .App-navbar h1 {
-  margin: 0;
-  font-size: 2rem;
+  font-size: 40px;
+  flex-grow: 1; /* Makes sure heading stretches to take available space */
+  text-align: center; /* Center text within its box */
 }
 
 button {
