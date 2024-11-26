@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
 import './App.css';
@@ -9,6 +9,7 @@ const OrderHistory = () => {
     <div className="order-history">
       <h2>Your Order History</h2>
       <p>Here is a list of your past orders.</p>
+      <p>THIS FUNCTIONALITY IS NOT IMPLEMENTED YET</p>
       {/* Replace with actual order history content */}
     </div>
   );
@@ -18,13 +19,37 @@ const App = () => {
   const { loginWithRedirect, logout, user, isAuthenticated, isLoading } = useAuth0();
 
   const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState([]); // State to hold products
+  const [loadingProducts, setLoadingProducts] = useState(true); // Loading state for products
+  const [error, setError] = useState(null); // State to hold error message
 
-  const products = [
-    { id: 1, name: 'Laptop', price: 999.99, image: 'https://via.placeholder.com/150' },
-    { id: 2, name: 'Smartphone', price: 599.99, image: 'https://via.placeholder.com/150' },
-    { id: 3, name: 'Headphones', price: 199.99, image: 'https://via.placeholder.com/150' },
-    { id: 4, name: 'Smart Watch', price: 149.99, image: 'https://via.placeholder.com/150' },
-  ];
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://192.168.1.122:5000/api/data', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          mode: 'cors', // Specify the CORS mode
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+
+        const data = await response.json();
+        setProducts(data);  // Assuming you're using state to store products
+        setLoadingProducts(false);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        setError(error.message); // Set the error state
+        setLoadingProducts(false); // Stop loading even on error
+      }
+    };
+
+    fetchProducts();
+  }, []); // Empty dependency array means this runs once when the component mounts
 
   const addToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
@@ -35,7 +60,7 @@ const App = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Loading user...</div>;
   }
 
   return (
@@ -69,18 +94,28 @@ const App = () => {
               path="/"
               element={
                 <div>
-                  <div className="product-list">
-                    {products.map((product) => (
-                      <div key={product.id} className="product-card">
-                        <img src={product.image} alt={product.name} className="product-image" />
-                        <h3>{product.name}</h3>
-                        <p>${product.price}</p>
-                        <button onClick={() => addToCart(product)} className="add-to-cart-button">
-                          Add to Cart
-                        </button>
-                      </div>
-                    ))}
-                  </div>
+                  {loadingProducts ? (
+                    <p>Loading products...</p>
+                  ) : error ? (
+                    <p>Error: {error}</p> // Display error message if there was an issue fetching products
+                  ) : (
+                    <div className="product-list">
+                      {products.length > 0 ? (
+                        products.map((product) => (
+                          <div key={product._id} className="product-card">
+                            <img src={product.image} alt={product.name} className="product-image" />
+                            <h3>{product.name}</h3>
+                            <p>${(product.price / 100).toFixed(2)}</p>
+                            <button onClick={() => addToCart(product)} className="add-to-cart-button">
+                              Add to Cart
+                            </button>
+                          </div>
+                        ))
+                      ) : (
+                        <p>No products available.</p>
+                      )}
+                    </div>
+                  )}
                   <div className="cart">
                     {cart.length > 0 && (
                       <div>
@@ -88,7 +123,7 @@ const App = () => {
                         <ul>
                           {cart.map((item, index) => (
                             <li key={index}>
-                              {item.name} - ${item.price}{' '}
+                              {item.name} - ${item.price.toFixed(2)}{' '}
                               <button onClick={() => removeFromCart(item.id)} className="remove-button">
                                 Remove
                               </button>
