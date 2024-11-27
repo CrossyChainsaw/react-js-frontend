@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-ro
 import './App.css';
 import Auth0ProviderWithHistory from './auth0Provider'; // Import the Auth0Provider
 
+const productManagementDomain = process.env.REACT_APP_PRODUCT_MANAGEMENT_DOMAIN
+
 const OrderHistory = () => {
   return (
     <div className="order-history">
@@ -26,7 +28,7 @@ const App = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://192.168.1.122:5000/api/data', {
+        const response = await fetch(`${productManagementDomain}/api/data`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
