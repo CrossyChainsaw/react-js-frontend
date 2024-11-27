@@ -28,7 +28,7 @@ const App = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`${productManagementDomain}/api/data`, {
+        const response = await fetch(`${productManagementDomain}api/data`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
