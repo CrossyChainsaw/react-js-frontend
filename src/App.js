@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-ro
 import './App.css';
 import Auth0ProviderWithHistory from './auth0Provider'; // Import the Auth0Provider
 
-const productManagementDomain = process.env.REACT_APP_PRODUCT_MANAGEMENT_DOMAIN
+const productManagementDomain = process.env.REACT_APP_PRODUCT_MANAGEMENT_DOMAIN;
 
 const OrderHistory = () => {
   return (
@@ -13,6 +13,54 @@ const OrderHistory = () => {
       <p>Here is a list of your past orders.</p>
       <p>THIS FUNCTIONALITY IS NOT IMPLEMENTED YET</p>
       {/* Replace with actual order history content */}
+    </div>
+  );
+};
+
+const PrivacyPolicy = () => {
+  return (
+    <div className="privacy-policy">
+      <h2>Privacy Policy</h2>
+      <p>
+        Welcome to Malhalla's Privacy Policy. We value your privacy and strive to protect your personal
+        information. This document outlines how we collect, use, and store your data.
+      </p>
+      <h3>What Data We Collect</h3>
+      <p>
+        We collect the following data:
+        <ul>
+          <li>First and last name</li>
+          <li>Email address</li>
+          <li>Number of logins</li>
+          <li>Time and location of logins</li>
+          <li>Browser and device information</li>
+        </ul>
+      </p>
+      <h3>How We Use Your Data</h3>
+      <p>
+        We use your data to:
+        <ul>
+          <li>Provide secure access to our platform</li>
+          <li>Improve your user experience</li>
+          <li>Ensure account security</li>
+        </ul>
+      </p>
+      <h3>How to Exercise Your Rights</h3>
+      <p>
+        Under GDPR, you have the right to access, modify, or delete your data. To exercise your rights,
+        contact us at <a href="mailto:privacy@malhalla.com">privacy@malhalla.com</a>.
+      </p>
+      <h3>Third-Party Services</h3>
+      <p>
+        We use Auth0 for authentication. For details on how Auth0 processes your data, please see their{' '}
+        <a href="https://auth0.com/privacy" target="_blank" rel="noopener noreferrer">
+          Privacy Policy
+        </a>.
+      </p>
+      <p>
+        For more information or questions about our Privacy Policy, please contact us at{' '}
+        <a href="mailto:privacy@malhalla.com">privacy@malhalla.com</a>.
+      </p>
     </div>
   );
 };
@@ -76,6 +124,9 @@ const App = () => {
                   Order History
                 </Link>
               )}
+              <Link to="/privacy-policy" className="privacy-policy-link">
+                Privacy Policy
+              </Link>
             </div>
             <h1>MALHALLA</h1>
             <div>
@@ -143,6 +194,7 @@ const App = () => {
               path="/order-history"
               element={isAuthenticated ? <OrderHistory /> : <Navigate to="/" />}
             />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
         </main>
       </div>
