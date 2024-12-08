@@ -48,7 +48,7 @@ const PrivacyPolicy = () => {
       <h3>How to Exercise Your Rights</h3>
       <p>
         Under GDPR, you have the right to access, modify, or delete your data. To exercise your rights,
-        contact us at <a href="mailto:privacy@malhalla.com">privacy@malhalla.com</a>.
+        contact us at <a href="mailto:thezombexplorer@gmail.com">thezombexplorer@gmail.com</a>.
       </p>
       <h3>Third-Party Services</h3>
       <p>
@@ -59,7 +59,7 @@ const PrivacyPolicy = () => {
       </p>
       <p>
         For more information or questions about our Privacy Policy, please contact us at{' '}
-        <a href="mailto:privacy@malhalla.com">privacy@malhalla.com</a>.
+        <a href="mailto:thezombexplorer@gmail.com">thezombexplorer@gmail.com</a>.
       </p>
     </div>
   );
