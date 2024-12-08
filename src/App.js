@@ -23,19 +23,23 @@ const PrivacyPolicy = () => {
       <h2>Privacy Policy</h2>
       <p>
         Welcome to Malhalla's Privacy Policy. We value your privacy and strive to protect your personal
-        information. This document outlines how we collect, use, and store your data.
+        information. This document outlines how we collect, use, store, and share your data.
       </p>
+      
       <h3>What Data We Collect</h3>
       <p>
-        We collect the following data:
+        We collect the following personal data:
         <ul>
           <li>First and last name</li>
           <li>Email address</li>
           <li>Number of logins</li>
           <li>Time and location of logins</li>
           <li>Browser and device information</li>
+          <li>Payment information (if applicable)</li>
+          <li>IP address and geolocation (via cookies)</li>
         </ul>
       </p>
+      
       <h3>How We Use Your Data</h3>
       <p>
         We use your data to:
@@ -43,20 +47,60 @@ const PrivacyPolicy = () => {
           <li>Provide secure access to our platform</li>
           <li>Improve your user experience</li>
           <li>Ensure account security</li>
+          <li>Comply with legal obligations</li>
         </ul>
       </p>
+
+      <h3>How Long We Retain Your Data</h3>
+      <p>
+        We retain your data as long as necessary to provide the services you request or as required by law. 
+        For more details, please see Auth0's privacy policy.
+      </p>
+
+      <h3>Categories of Personal Data Collected</h3>
+      <p>
+        We collect the following categories of personal data:
+        <ul>
+          <li>Contact Information: Name, email address</li>
+          <li>Technical Data: Device information, browser details, IP address</li>
+          <li>Authentication Data: Logins, time, and location of logins</li>
+          <li>Financial Information: Payment details (if applicable)</li>
+        </ul>
+      </p>
+
+      <h3>Sharing and Selling of Your Data</h3>
+      <p>
+        We do not sell your personal data. However, we may share your data with third-party providers for specific purposes such as authentication, hosting, and security. These third parties include:
+        <ul>
+          <li>Auth0: for authentication services (see their <a href="https://auth0.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>)</li>
+          <li>Other service providers: for security, hosting, and platform improvement</li>
+        </ul>
+      </p>
+
+      <h3>Your Rights</h3>
+      <p>
+        Under GDPR and other privacy laws, you have the right to:
+        <ul>
+          <li>Access the personal data we hold about you</li>
+          <li>Request corrections to your personal data</li>
+          <li>Request deletion of your personal data</li>
+          <li>Object to or restrict processing of your data</li>
+          <li>Withdraw your consent for data processing at any time</li>
+        </ul>
+        To exercise your rights, contact us at <a href="mailto:thezombexplorer@gmail.com">thezombexplorer@gmail.com</a>.
+      </p>
+      
+      <h3>Cookies and Tracking Technologies</h3>
+      <p>
+        We use cookies and similar tracking technologies to improve your user experience. These technologies may collect data such as your IP address, browser type, and device information. You can manage your cookie preferences through your browser settings or opt-out via a consent banner.
+      </p>
+
       <h3>How to Exercise Your Rights</h3>
       <p>
-        Under GDPR, you have the right to access, modify, or delete your data. To exercise your rights,
-        contact us at <a href="mailto:thezombexplorer@gmail.com">thezombexplorer@gmail.com</a>.
+        If you wish to exercise your rights, such as opting out of data collection or requesting data deletion, please contact us at <a href="mailto:thezombexplorer@gmail.com">thezombexplorer@gmail.com</a>.
+        Additionally, you may exercise your rights through a privacy consent management pop-up or banner that appears upon your visit to our platform.
       </p>
-      <h3>Third-Party Services</h3>
-      <p>
-        We use Auth0 for authentication. For details on how Auth0 processes your data, please see their{' '}
-        <a href="https://auth0.com/privacy" target="_blank" rel="noopener noreferrer">
-          Privacy Policy
-        </a>.
-      </p>
+      
       <p>
         For more information or questions about our Privacy Policy, please contact us at{' '}
         <a href="mailto:thezombexplorer@gmail.com">thezombexplorer@gmail.com</a>.
@@ -64,6 +108,7 @@ const PrivacyPolicy = () => {
     </div>
   );
 };
+
 
 const App = () => {
   const { loginWithRedirect, logout, user, isAuthenticated, isLoading } = useAuth0();
