@@ -77,19 +77,23 @@ const PrivacyPolicy = () => {
         </ul>
       </p>
 
-      <h3>Your Rights</h3>
+      <h3>Your Rights Under GDPR</h3>
       <p>
-        Under GDPR and other privacy laws, you have the right to:
+        Under GDPR, you have the following rights regarding your personal data:
         <ul>
-          <li>Access the personal data we hold about you</li>
-          <li>Request corrections to your personal data</li>
-          <li>Request deletion of your personal data</li>
-          <li>Object to or restrict processing of your data</li>
-          <li>Withdraw your consent for data processing at any time</li>
+          <li><strong>Right of Access</strong>: You can request to know if your personal data is processed, what data is being processed, and the purposes for processing.</li>
+          <li><strong>Right to Rectification</strong>: You can request corrections to any inaccuracies in your data.</li>
+          <li><strong>Right to Erasure</strong>: You can request the deletion of your data, with some exceptions.</li>
+          <li><strong>Right to Restriction of Processing</strong>: You can request to temporarily or permanently stop processing your data.</li>
+          <li><strong>Right to Data Portability</strong>: You can request a copy of your data in a portable, readable format.</li>
+          <li><strong>Right to Object</strong>: You can object to the processing of your data, including sharing, sale, or profiling.</li>
+          <li><strong>Right to Know About Automated Decision-Making</strong>: You can request information about automated decisions and profiling.</li>
+          <li><strong>Right to Opt-Out of Automated Decision-Making</strong>: You can opt out of decisions made solely by automated means, including profiling.</li>
+          <li><strong>Right to Non-Discrimination</strong>: You are protected from discrimination for exercising your privacy rights.</li>
         </ul>
-        To exercise your rights, contact us at <a href="mailto:thezombexplorer@gmail.com">thezombexplorer@gmail.com</a>.
+        To exercise these rights, contact us at <a href="mailto:thezombexplorer@gmail.com">thezombexplorer@gmail.com</a>.
       </p>
-      
+
       <h3>Cookies and Tracking Technologies</h3>
       <p>
         We use cookies and similar tracking technologies to improve your user experience. These technologies may collect data such as your IP address, browser type, and device information. You can manage your cookie preferences through your browser settings or opt-out via a consent banner.
@@ -108,6 +112,7 @@ const PrivacyPolicy = () => {
     </div>
   );
 };
+
 
 
 const App = () => {
