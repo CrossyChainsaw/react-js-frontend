@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import './App.css';
 import Auth0ProviderWithHistory from './auth0Provider'; // Import the Auth0Provider
 import OrderHistory from './components/OrderHistory';
-import PrivacyPolicy from './components/PrivacyPolicy';
+import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import ProductList from './components/ProductList';
 import Cart from './components/Cart';
 import Navbar from './components/Navbar';
