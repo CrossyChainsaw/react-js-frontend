@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
-import Auth0ProviderWithHistory from './auth0Provider'; // Import the Auth0Provider
+import Auth0ProviderWithHistory from './auth0Provider';
 import OrderHistory from './components/OrderHistory';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import ProductList from './components/ProductList';
@@ -38,7 +38,6 @@ const App = () => {
         setProducts(data);
         setLoadingProducts(false);
       } catch (error) {
-        console.error('Error fetching products:', error);
         setError(error.message);
         setLoadingProducts(false);
       }
@@ -47,12 +46,36 @@ const App = () => {
     fetchProducts();
   }, []);
 
+  // Add a product to the cart. If it's already in the cart, increase the quantity.
   const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
+    setCart((prevCart) => {
+      // Check if the product is already in the cart
+      const existingProduct = prevCart.find(item => item._id === product._id);
+      if (existingProduct) {
+        // If it is, increment the quantity
+        return prevCart.map(item =>
+          item._id === product._id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        // If it's not, add the product with a quantity of 1
+        return [...prevCart, { ...product, quantity: 1 }];
+      }
+    });
   };
 
-  const removeFromCart = (productId) => {
-    setCart(cart.filter((item) => item.id !== productId));
+  // Remove one instance of the product from the cart (decrease quantity)
+  const removeFromCart = (id) => {
+    setCart((prevCart) => {
+      return prevCart
+        .map(item => 
+          item._id === id 
+            ? { ...item, quantity: item.quantity - 1 } // Decrease the quantity
+            : item
+        )
+        .filter(item => item.quantity > 0); // Remove products with zero quantity
+    });
   };
 
   if (isLoading) {
