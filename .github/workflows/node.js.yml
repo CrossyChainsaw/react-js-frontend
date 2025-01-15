@@ -22,5 +22,17 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+
     - run: npm ci
     - run: npm run build
+
+    # Add a Cypress installation step if Cypress isn't already installed in `npm ci`
+    - name: Install Cypress
+      run: npm install cypress --save-dev
+
+    # Add a step to run Cypress tests
+    - name: Run Cypress Tests
+      run: npx cypress run
+      env:
+        # Required to run Cypress in CI
+        CI: true
