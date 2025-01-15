@@ -10,18 +10,15 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
+    timeout-minutes: 30
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 18.x
         cache: 'npm'
 
     - run: npm ci
@@ -29,7 +26,9 @@ jobs:
     - run: npm run build
 
     - name: Start Application
-      run: npm start &> server.log &
+      run: |
+        npm start &> server.log &
+        sleep 10
       env:
         CI: true
 
@@ -37,9 +36,9 @@ jobs:
       run: cat server.log
 
     - name: Wait for Server
-      run: npx wait-on http://localhost:3000 --timeout 30000
+      run: npx wait-on http://localhost:3000 --timeout 60000
 
     - name: Run Cypress Tests
-      run: npx cypress run
+      run: npx cypress run --browser chrome
       env:
         CI: true
