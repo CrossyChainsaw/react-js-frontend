@@ -7,12 +7,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Install Node.js and cache dependencies
+      # Set up Node.js and install dependencies with cache
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: 'npm'
+
+      - name: Clear npm cache
+        run: npm cache clean --force
+
+      - name: Remove babel-loader cache
+        run: rm -rf node_modules/.cache/babel-loader
 
       - name: Install dependencies
         run: npm ci
