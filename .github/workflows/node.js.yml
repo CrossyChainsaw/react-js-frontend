@@ -17,6 +17,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
@@ -24,15 +25,21 @@ jobs:
         cache: 'npm'
 
     - run: npm ci
+
     - run: npm run build
 
-    # Add a Cypress installation step if Cypress isn't already installed in `npm ci`
-    - name: Install Cypress
-      run: npm install cypress --save-dev
+    # Start the server in the background
+    - name: Start Application
+      run: npm start &
+      env:
+        CI: true
 
-    # Add a step to run Cypress tests
+    # Wait for the server to be ready
+    - name: Wait for Server
+      run: npx wait-on http://localhost:3000
+
+    # Run Cypress tests
     - name: Run Cypress Tests
       run: npx cypress run
       env:
-        # Required to run Cypress in CI
         CI: true
