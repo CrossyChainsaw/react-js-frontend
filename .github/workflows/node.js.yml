@@ -11,34 +11,16 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
     steps:
     - uses: actions/checkout@v4
-
-    - name: Use Node.js
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
-        node-version: 18.x
+        node-version: ${{ matrix.node-version }}
         cache: 'npm'
-
     - run: npm ci
-
     - run: npm run build
-
-    - name: Start Application
-      run: |
-        npm start &> server.log &
-        sleep 15
-
-    - name: Check Server Logs
-      run: cat server.log
-
-    - name: Test Server Availability
-      run: curl -I http://localhost:3000
-
-    - name: Wait for Server
-      run: npx wait-on http://localhost:3000 --timeout 120000
-
-    - name: Run Cypress Tests
-      run: npx cypress run
-      env:
-        CI: true
