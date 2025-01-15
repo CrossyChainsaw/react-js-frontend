@@ -28,17 +28,17 @@ jobs:
 
     - run: npm run build
 
-    # Start the server in the background
     - name: Start Application
-      run: npm start &
+      run: npm start &> server.log &
       env:
         CI: true
 
-    # Wait for the server to be ready
-    - name: Wait for Server
-      run: npx wait-on http://localhost:3000
+    - name: Check Server Logs
+      run: cat server.log
 
-    # Run Cypress tests
+    - name: Wait for Server
+      run: npx wait-on http://localhost:3000 --timeout 30000
+
     - name: Run Cypress Tests
       run: npx cypress run
       env:
